@@ -13,14 +13,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('$count')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            count += 1;
-          });
-        },
-        child: Icon(Icons.add),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 150),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 100,
+                backgroundImage: AssetImage('assets/images/me.jpg'),
+              ),
+
+              SizedBox(height: 20),
+              Text(
+                'Maiwand Shirzad',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Computer Scince student',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
