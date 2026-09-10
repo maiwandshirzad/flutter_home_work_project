@@ -1,26 +1,44 @@
-class Student {
-  String name;
-  String department;
-  int semester;
+class Product {
+  final String name;
+  final double price;
+  final String category;
+  final bool inStock;
 
-  Student(this.name, this.department, this.semester);
+  const Product({
+    required this.name,
+    required this.price,
+    this.category = 'General',
+    this.inStock = true,
+  });
 
-  void displayInfo() {
-    print('Name: $name');
-    print('Department: $department');
-    print('Semester: $semester');
-    print('------------------------');
+  Product.freeProduct()
+      : name = 'Free Sample',
+        price = 0.0,
+        category = 'Promo',
+        inStock = true;
+
+  @override
+  String toString() {
+    return 'Product(name: $name, price: $price, category: $category, inStock: $inStock)';
   }
 }
 
 void main() {
-  Student student1 = Student('Ali', 'Computer Science', 5);
-  Student student2 = Student('Sara', 'Software Engineering', 4);
-  Student student3 = Student('Hassan', 'Information Technology', 6);
+  Product p1 = Product(
+    name: 'Laptop',
+    price: 899.99,
+    category: 'Electronics',
+    inStock: true,
+  );
 
-  List<Student> students = [student1, student2, student3];
+  Product p2 = Product(
+    name: 'Notebook',
+    price: 15.50,
+  );
 
-  for (Student student in students) {
-    student.displayInfo();
-  }
+  Product freeProduct = Product.freeProduct();
+
+  print('Product 1: $p1');
+  print('Product 2: $p2');
+  print('Free product: $freeProduct');
 }

@@ -1,52 +1,74 @@
+class StudentMapModel {
+  final String name;
+  final String id;
+  final int semester;
+  final String department;
+  final Map<String, dynamic> address;
+
+  StudentMapModel({
+    required this.name,
+    required this.id,
+    required this.semester,
+    required this.department,
+    required this.address,
+  });
+
+  factory StudentMapModel.fromMap(Map<String, dynamic> data) {
+    return StudentMapModel(
+      name: data['name'],
+      id: data['id'],
+      semester: data['semester'],
+      department: data['department'],
+      address: Map<String, dynamic>.from(data['address'] ?? {}),
+    );
+  }
+
+  @override
+  String toString() {
+    return 'StudentMapModel(name: $name, id: $id, semester: $semester, department: $department, address: $address)';
+  }
+}
+
 void main() {
-  // Read or define a numeric mark
-  int mark = 87;
+  Map<String, dynamic> student = {
+    'name': 'Ali',
+    'id': 'CS-101',
+    'semester': 5,
+    'department': 'Computer Science',
+  };
 
-  // Use conditions to determine Pass/Fail and letter grade
-  String result = mark >= 50 ? 'Pass' : 'Fail';
-  String letterGrade;
+  print('Initial student map: $student');
 
-  if (mark >= 90) {
-    letterGrade = 'A';
-  } else if (mark >= 80) {
-    letterGrade = 'B';
-  } else if (mark >= 70) {
-    letterGrade = 'C';
-  } else if (mark >= 60) {
-    letterGrade = 'D';
-  } else {
-    letterGrade = 'F';
+  // Read and update values
+  print('Name: ${student['name']}');
+  student['semester'] = 6;
+  print('Updated student map: $student');
+
+  // Add a new key
+  student['cgpa'] = 3.8;
+  print('After add: $student');
+
+  // Remove a key
+  student.remove('department');
+  print('After remove: $student');
+
+  // Iterate over entries
+  print('Entries:');
+  for (var entry in student.entries) {
+    print('${entry.key}: ${entry.value}');
   }
 
-  print('Mark: $mark');
-  print('Result: $result');
-  print('Letter Grade: $letterGrade');
+  // Create a nested address Map
+  Map<String, dynamic> address = {
+    'city': 'Lahore',
+    'street': 'Main Road',
+    'zipCode': '54000',
+  };
 
-  // Print numbers 1–20 using a for loop
-  print('\nNumbers 1 to 20:');
-  for (int i = 1; i <= 20; i++) {
-    print(i);
-  }
+  student['address'] = address;
+  print('Student with address: $student');
 
-  // Print only even numbers
-  print('\nEven numbers from 1 to 20:');
-  for (int i = 1; i <= 20; i++) {
-    if (i % 2 == 0) {
-      print(i);
-    }
-  }
-
-  // Repeat one task with a while loop
-  print('\nEven numbers using while loop:');
-  int j = 1;
-  while (j <= 20) {
-    if (j % 2 == 0) {
-      print(j);
-    }
-    j++;
-  }
-
-  // Use a ternary expression for a simple status
-  String status = mark >= 50 ? 'Eligible' : 'Not Eligible';
-  print('\nStatus: $status');
+  // Convert the Map into a Student object using a named constructor
+  StudentMapModel studentObject = StudentMapModel.fromMap(student);
+  print('Student object: $studentObject');
 }

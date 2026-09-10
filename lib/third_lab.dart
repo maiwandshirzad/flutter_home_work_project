@@ -1,38 +1,45 @@
+void normalFunction() {
+  print('This is a normal function.');
+}
+
+void arrowFunction() => print('This is a fat-arrow function.');
+
+String greet(String name) => 'Hello, $name!';
+
+void runWithFunction(String message, void Function() action) {
+  print(message);
+  action();
+}
+
 void main() {
-  // Create a List of five course names
-  List<String> courses = ['Math', 'Physics', 'Chemistry', 'Biology', 'English'];
+  // Create normal and fat-arrow functions
+  normalFunction();
+  arrowFunction();
 
-  // Print the first and last items
-  print('First course: ${courses.first}');
-  print('Last course: ${courses.last}');
+  // Assign a function to a variable
+  var sayHi = greet;
+  print(sayHi('Sara'));
 
-  // Add a new course
-  courses.add('Flutter');
-  print('After adding a course: $courses');
+  // Pass a function to another function
+  runWithFunction('Running callback...', () {
+    print('Callback executed.');
+  });
 
-  // Remove one course
-  courses.remove('Biology');
-  print('After removing a course: $courses');
+  // Use an anonymous function
+  List<int> numbers = [1, 2, 3, 4, 5];
+  List<int> doubled = numbers.map((n) => n * 2).toList();
+  print('Original: $numbers');
+  print('Doubled: $doubled');
 
-  // Check whether 'Flutter' exists
-  bool hasFlutter = courses.contains('Flutter');
-  print('Does the list contain Flutter? $hasFlutter');
-
-  // Iterate through the List with for-in
-  print('Courses using for-in loop:');
-  for (String course in courses) {
-    print(course);
+  // Create a Flutter button callback using both a named and anonymous function
+  void namedButtonCallback() {
+    print('Named callback triggered');
   }
 
-  // Create a List of marks and calculate the average
-  List<int> marks = [80, 90, 85, 95, 70];
-  int total = 0;
+  void Function() anonymousButtonCallback = () {
+    print('Anonymous callback triggered');
+  };
 
-  for (int mark in marks) {
-    total += mark;
-  }
-
-  double average = total / marks.length;
-  print('Marks: $marks');
-  print('Average mark: $average');
+  namedButtonCallback();
+  anonymousButtonCallback();
 }
