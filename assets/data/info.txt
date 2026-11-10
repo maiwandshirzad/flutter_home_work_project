@@ -1,0 +1,2 @@
+Welcome to the Flutter Common Widgets Lab!
+Assets loaded via rootBundle and AssetBundle enable bundled configurations and offline text.
